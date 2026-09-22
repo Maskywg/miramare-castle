@@ -103,6 +103,10 @@
                     <i data-lucide="hourglass" class="w-4 h-4 text-ocean-400"></i>
                     <span>年代命運</span>
                 </a>
+                <a href="#royals" class="text-slate-200 hover:text-amber-300 transition flex items-center space-x-1.5">
+                    <i data-lucide="crown" class="w-4 h-4 text-amber-300"></i>
+                    <span>大公與公主</span>
+                </a>
                 <a href="#interiors" class="text-slate-200 hover:text-amber-300 transition flex items-center space-x-1.5">
                     <i data-lucide="anchor" class="w-4 h-4 text-ocean-400"></i>
                     <span>船艙與王座</span>
@@ -381,6 +385,102 @@
                     <div class="hidden md:block md:w-1/2 md:pl-10">
                         <span class="text-xs text-emerald-400 font-cinzel">LIVING HERITAGE</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主題：大公與公主 · 琴瑟和鳴與歷史宿命 -->
+    <section id="royals" class="py-24 bg-gradient-to-b from-[#040f1c] via-[#091f38] to-[#051527] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-amber-300 tracking-widest uppercase font-cinzel">The Archduke & The Princess</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-white mt-2">人物傳奇 · 馬克西米連與夏洛特</h2>
+                <p class="text-slate-400 text-sm mt-3">真實歷史照片與宮廷油畫，見證這座白色城堡背後的愛情與世紀哀歌</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-amber-400 to-ocean-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- 兩位主角對比卡片 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- 馬克西米連大公 -->
+                <div class="bg-ocean-950/90 rounded-3xl p-8 border border-white/10 hover:border-amber-400/40 transition shadow-2xl">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold">
+                            <i data-lucide="shield" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-amber-300 font-cinzel tracking-wider uppercase">Archduke & Emperor</span>
+                            <h3 class="text-xl sm:text-2xl font-bold font-serif text-white">斐迪南·馬克西米連大公</h3>
+                            <span class="text-xs text-slate-400 font-mono">Ferdinand Maximilian (1832 – 1867)</span>
+                        </div>
+                    </div>
+
+                    <!-- 照片並列展示 -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="relative rounded-2xl overflow-hidden bg-black/40 border border-white/10 cursor-pointer group aspect-[3/4]" onclick="openModal('https://upload.wikimedia.org/wikipedia/commons/4/4f/Maximilian_of_Mexico_bw.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original', '馬克西米連大公 · 真實歷史照片', '1860年代歷史黑白寫真。大公身著海軍禮服，留著其標誌性的中分濃密長鬚，眼神堅毅而深邃。')">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Maximilian_of_Mexico_bw.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original" alt="Maximilian photo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute bottom-2 left-2 right-2 px-2 py-1 rounded bg-black/70 text-[11px] text-amber-200 text-center backdrop-blur-sm">
+                                📷 歷史真實照片
+                            </div>
+                        </div>
+                        <div class="relative rounded-2xl overflow-hidden bg-black/40 border border-white/10 cursor-pointer group aspect-[3/4]" onclick="openModal('https://upload.wikimedia.org/wikipedia/commons/f/f8/Emperador_Maximiliano_I_de_Mexico.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original', '馬克西米連一世 · 宮廷官方肖像', '宮廷畫家 Franz Xaver Winterhalter 繪製之大公御影，佩戴金羊毛騎士團勳章與統帥綬帶。')">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Emperador_Maximiliano_I_de_Mexico.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original" alt="Maximilian portrait" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute bottom-2 left-2 right-2 px-2 py-1 rounded bg-black/70 text-[11px] text-amber-200 text-center backdrop-blur-sm">
+                                🎨 宮廷官方肖像油畫
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-300 text-sm leading-relaxed font-light">
+                        奧地利皇帝法蘭茲·約瑟夫一世（Franz Joseph I）的親胞弟。他是一位博學多才的浪漫主義者、熱情的植物學家與卓越的海軍統帥。他將生命中最熾熱的激情奉獻給了海洋與望海堡，然而這份熱情最終卻被歐洲列強政治野心推向了墨西哥的悲劇王位。
+                    </p>
+                </div>
+
+                <!-- 比利時夏洛特公主 -->
+                <div class="bg-ocean-950/90 rounded-3xl p-8 border border-white/10 hover:border-amber-400/40 transition shadow-2xl">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold">
+                            <i data-lucide="heart" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-amber-300 font-cinzel tracking-wider uppercase">Princess & Empress</span>
+                            <h3 class="text-xl sm:text-2xl font-bold font-serif text-white">比利時夏洛特公主</h3>
+                            <span class="text-xs text-slate-400 font-mono">Charlotte of Belgium (1840 – 1927)</span>
+                        </div>
+                    </div>
+
+                    <!-- 照片並列展示 -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="relative rounded-2xl overflow-hidden bg-black/40 border border-white/10 cursor-pointer group aspect-[3/4]" onclick="openModal('https://upload.wikimedia.org/wikipedia/commons/7/7d/Charlotte_of_Belgium%2C_Empress_of_Mexico.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original', '夏洛特公主 · 青年歷史照片', '比利時開國國王利奧波德一世之獨女，端莊優雅，才智過人，深得大公摯愛。')">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Charlotte_of_Belgium%2C_Empress_of_Mexico.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original" alt="Charlotte photo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute bottom-2 left-2 right-2 px-2 py-1 rounded bg-black/70 text-[11px] text-amber-200 text-center backdrop-blur-sm">
+                                📷 歷史真實照片
+                            </div>
+                        </div>
+                        <div class="relative rounded-2xl overflow-hidden bg-black/40 border border-white/10 cursor-pointer group aspect-[3/4]" onclick="openModal('https://upload.wikimedia.org/wikipedia/commons/7/74/Carlota_de_mejico.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original', '夏洛特皇后 · 宮廷官方肖像', '身著華麗宮裝的墨西哥皇后夏洛特肖像，流露著貴族女性的從容與憂鬱。')">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Carlota_de_mejico.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original" alt="Charlotte portrait" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute bottom-2 left-2 right-2 px-2 py-1 rounded bg-black/70 text-[11px] text-amber-200 text-center backdrop-blur-sm">
+                                🎨 宮廷官方肖像油畫
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-300 text-sm leading-relaxed font-light">
+                        比利時開國國王利奧波德一世的掌上明珠、英國維多利亞女王的表妹。17歲嫁與大公後定居特里爾斯特。在大公遇難後，夏洛特在極度悲痛中精神崩潰，曾短暫幽居於望海堡花園的小城堡療養，餘生在歐洲深居簡出，享年86歲。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 愛情與悲歌故事引言卡 -->
+            <div class="p-8 rounded-3xl bg-white/5 border border-amber-400/30 backdrop-blur-md flex flex-col md:flex-row items-center gap-6">
+                <div class="w-14 h-14 rounded-2xl bg-amber-400/20 text-amber-300 flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="quote" class="w-7 h-7"></i>
+                </div>
+                <div class="space-y-2 text-left">
+                    <h4 class="text-lg font-bold font-serif text-amber-200">亞得里亞海畔最平靜的四年（1860 – 1864）</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed font-light">
+                        望海堡是一座因愛而生的宮殿。在啟程前往墨西哥前的四年間，大公親自為夏洛特規劃朝向海面的起居室，夏洛特則在城堡中彈琴作畫、侍弄大公從全球航海帶回的花草。這段面朝大海、浪濤相伴的時光，成為這對年輕皇室夫妻一生中唯一純粹而幸福的避風港。
+                    </p>
                 </div>
             </div>
         </div>
