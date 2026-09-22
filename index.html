@@ -124,8 +124,8 @@
             <!-- 右側動作按鈕 -->
             <div class="flex items-center space-x-3">
                 <button id="soundToggle" onclick="toggleSeaSound()" class="px-3.5 py-1.5 rounded-full border border-ocean-400/40 bg-ocean-900/60 hover:bg-ocean-800 text-xs text-ocean-200 flex items-center space-x-2 transition shadow-inner">
-                    <i data-lucide="volume-2" id="soundIcon" class="w-4 h-4 text-amber-300"></i>
-                    <span id="soundText">海浪環境音</span>
+                    <i data-lucide="volume-2" class="w-4 h-4 text-amber-300 sound-btn-icon"></i>
+                    <span class="sound-btn-text">海浪環境音</span>
                 </button>
             </div>
         </div>
@@ -833,6 +833,19 @@
         </div>
     </footer>
 
+    <!-- 手機/桌機懸浮音效快捷按鈕 -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <button onclick="toggleSeaSound()" class="px-4 py-3 rounded-full bg-ocean-950/90 hover:bg-ocean-900 text-amber-300 border border-amber-400/40 shadow-2xl backdrop-blur-md flex items-center space-x-2.5 transition transform active:scale-95 group">
+            <i data-lucide="volume-2" class="w-5 h-5 sound-btn-icon text-amber-300 group-hover:scale-110 transition"></i>
+            <span class="text-xs font-bold font-serif text-white sound-btn-text">海浪環境音</span>
+            <div class="sound-wave-anim hidden items-center space-x-0.5 ml-1">
+                <span class="w-1 h-3 bg-amber-400 rounded-full animate-pulse"></span>
+                <span class="w-1 h-4 bg-amber-300 rounded-full animate-pulse delay-75"></span>
+                <span class="w-1 h-2 bg-amber-400 rounded-full animate-pulse delay-150"></span>
+            </div>
+        </button>
+    </div>
+
     <!-- 燈箱彈窗 (Lightbox Modal) -->
     <div id="imageModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden flex items-center justify-center p-4 transition-opacity duration-300 opacity-0" onclick="closeModal()">
         <div class="relative max-w-4xl w-full bg-ocean-950 border border-white/20 rounded-3xl overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
@@ -879,26 +892,69 @@
             if (e.key === 'Escape') closeModal();
         });
 
-        // 簡易 Web Audio API 模擬舒緩亞得里亞海海浪聲
-        let audioCtx = null;
+        // 雙模海浪音頻控制器（原生 HTML5 Audio + 支援 iOS Safari / Android 觸控啟動）
+        const seaAudio = new Audio('./sea-waves.mp3');
+        seaAudio.loop = true;
+        seaAudio.volume = 0.6;
+
         let isPlaying = false;
-        let noiseNode = null;
-        let gainNode = null;
-        let filterNode = null;
 
-        function toggleSeaSound() {
-            const soundIcon = document.getElementById('soundIcon');
-            const soundText = document.getElementById('soundText');
+        function updateSoundUI(playing) {
+            const icons = document.querySelectorAll('.sound-btn-icon');
+            const texts = document.querySelectorAll('.sound-btn-text');
+            const waves = document.querySelectorAll('.sound-wave-anim');
 
+            icons.forEach(icon => {
+                icon.setAttribute('data-lucide', playing ? 'volume-x' : 'volume-2');
+            });
+            texts.forEach(text => {
+                text.innerText = playing ? '靜音海浪' : '海浪環境音';
+            });
+            waves.forEach(wave => {
+                if (playing) {
+                    wave.classList.remove('hidden');
+                    wave.classList.add('flex');
+                } else {
+                    wave.classList.add('hidden');
+                    wave.classList.remove('flex');
+                }
+            });
+
+            lucide.createIcons();
+        }
+
+        async function toggleSeaSound() {
             if (!isPlaying) {
+                try {
+                    await seaAudio.play();
+                    isPlaying = true;
+                    updateSoundUI(true);
+                } catch (err) {
+                    console.warn('Audio play failed, falling back to Web Audio:', err);
+                    // Fallback to Web Audio synthesis if audio element fails
+                    fallbackWebAudio();
+                }
+            } else {
+                seaAudio.pause();
+                if (window.synthNoiseNode) {
+                    window.synthNoiseNode.stop();
+                    window.synthNoiseNode = null;
+                }
+                isPlaying = false;
+                updateSoundUI(false);
+            }
+        }
+
+        // Web Audio 合成備用方案
+        let audioCtx = null;
+        function fallbackWebAudio() {
+            try {
                 if (!audioCtx) {
                     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 }
                 if (audioCtx.state === 'suspended') {
                     audioCtx.resume();
                 }
-
-                // 建立粉紅噪音海浪合成
                 const bufferSize = audioCtx.sampleRate * 2;
                 const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
                 const output = noiseBuffer.getChannelData(0);
@@ -911,51 +967,27 @@
                     b3 = 0.86650 * b3 + white * 0.3104856;
                     b4 = 0.55000 * b4 + white * 0.5329522;
                     b5 = -0.7616 * b5 - white * 0.0168980;
-                    output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
-                    output[i] *= 0.11;
+                    output[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.11;
                     b6 = white * 0.115926;
                 }
-
                 const whiteNoise = audioCtx.createBufferSource();
                 whiteNoise.buffer = noiseBuffer;
                 whiteNoise.loop = true;
-
-                filterNode = audioCtx.createBiquadFilter();
-                filterNode.type = 'lowpass';
-                filterNode.frequency.setValueAtTime(350, audioCtx.currentTime);
-
-                // 潮汐週期調節
-                const lfo = audioCtx.createOscillator();
-                lfo.frequency.setValueAtTime(0.12, audioCtx.currentTime); // 每 8 秒一次浪潮起伏
-                const lfoGain = audioCtx.createGain();
-                lfoGain.gain.setValueAtTime(220, audioCtx.currentTime);
-                lfo.connect(lfoGain);
-                lfoGain.connect(filterNode.frequency);
-                lfo.start();
-
-                gainNode = audioCtx.createGain();
-                gainNode.gain.setValueAtTime(0.18, audioCtx.currentTime);
-
-                whiteNoise.connect(filterNode);
-                filterNode.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
-
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(350, audioCtx.currentTime);
+                const gain = audioCtx.createGain();
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                whiteNoise.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioCtx.destination);
                 whiteNoise.start();
-                noiseNode = whiteNoise;
-
+                window.synthNoiseNode = whiteNoise;
                 isPlaying = true;
-                soundIcon.setAttribute('data-lucide', 'volume-x');
-                soundText.innerText = '靜音海浪';
-            } else {
-                if (noiseNode) {
-                    noiseNode.stop();
-                    noiseNode.disconnect();
-                }
-                isPlaying = false;
-                soundIcon.setAttribute('data-lucide', 'volume-2');
-                soundText.innerText = '海浪環境音';
+                updateSoundUI(true);
+            } catch (e) {
+                console.error(e);
             }
-            lucide.createIcons();
         }
     </script>
 </body>
