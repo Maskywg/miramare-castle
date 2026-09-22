@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>望海堡 Castello di Miramare | 極東義大利數位策展深旅</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Noto+Serif+TC:wght@300;400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ocean: {
+                            50: '#f0f8ff',
+                            100: '#e0f1fe',
+                            200: '#bae3fd',
+                            300: '#7ccafc',
+                            400: '#36aff7',
+                            500: '#0c94e8',
+                            600: '#0174c6',
+                            700: '#025da0',
+                            800: '#064e84',
+                            900: '#0b416e',
+                            950: '#072948',
+                        },
+                        habsburg: {
+                            gold: '#d4af37',
+                            crimson: '#8b0000',
+                            navy: '#0f1d38',
+                            ivory: '#fbfbf7',
+                            stone: '#e6e4df'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif TC"', 'serif'],
+                        cinzel: ['"Cinzel"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(11, 65, 110, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .sea-shimmer {
+            background: linear-gradient(135deg, rgba(7,41,72,0.92) 0%, rgba(11,65,110,0.85) 50%, rgba(2,93,160,0.88) 100%);
+        }
+        .hero-pattern {
+            background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #0c94e8;
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #072948;
+        }
+    </style>
+</head>
+<body class="bg-[#051527] text-slate-100 font-sans antialiased selection:bg-ocean-400 selection:text-slate-900">
+
+    <!-- 頂部導覽列 -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-habsburg-gold to-amber-200 flex items-center justify-center text-habsburg-navy shadow-lg shadow-amber-500/20 group-hover:scale-105 transition">
+                    <i data-lucide="compass" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <span class="block text-xs font-cinzel tracking-widest text-amber-300 uppercase">Castello di Miramare</span>
+                    <span class="block text-lg font-bold font-serif tracking-wider text-white">望海堡 · 歷史走讀</span>
+                </div>
+            </a>
+
+            <!-- 桌面選單 -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#overview" class="text-slate-200 hover:text-amber-300 transition flex items-center space-x-1.5">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-ocean-400"></i>
+                    <span>核心意象</span>
+                </a>
+                <a href="#maritime" class="text-slate-200 hover:text-amber-300 transition flex items-center space-x-1.5">
+                    <i data-lucide="waves" class="w-4 h-4 text-ocean-400"></i>
+                    <span>海洋建築</span>
+                </a>
+                <a href="#timeline" class="text-slate-200 hover:text-amber-300 transition flex items-center space-x-1.5">
+                    <i data-lucide="hourglass" class="w-4 h-4 text-ocean-400"></i>
+                    <span>年代命運</span>
+                </a>
+                <a href="#interiors" class="text-slate-200 hover:text-amber-300 transition flex items-center space-x-1.5">
+                    <i data-lucide="anchor" class="w-4 h-4 text-ocean-400"></i>
+                    <span>船艙與王座</span>
+                </a>
+                <a href="#gallery" class="text-slate-200 hover:text-amber-300 transition flex items-center space-x-1.5">
+                    <i data-lucide="camera" class="w-4 h-4 text-ocean-400"></i>
+                    <span>策展圖集</span>
+                </a>
+                <a href="#guide" class="text-slate-200 hover:text-amber-300 transition flex items-center space-x-1.5">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-ocean-400"></i>
+                    <span>走讀攻略</span>
+                </a>
+            </nav>
+
+            <!-- 右側動作按鈕 -->
+            <div class="flex items-center space-x-3">
+                <button id="soundToggle" onclick="toggleSeaSound()" class="px-3.5 py-1.5 rounded-full border border-ocean-400/40 bg-ocean-900/60 hover:bg-ocean-800 text-xs text-ocean-200 flex items-center space-x-2 transition shadow-inner">
+                    <i data-lucide="volume-2" id="soundIcon" class="w-4 h-4 text-amber-300"></i>
+                    <span id="soundText">海浪環境音</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero 主視覺區塊 -->
+    <section class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+        <!-- 背景大圖層與漸層 -->
+        <div class="absolute inset-0 z-0">
+            <img src="./unnamed (2).jpg" alt="Miramare Castle Reflection" class="w-full h-full object-cover object-center transform scale-105 filter brightness-75 contrast-110">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#051527] via-[#051527]/60 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#051527]/80 via-transparent to-[#051527]/70"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-12">
+            <!-- 策展徽章標籤 -->
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-semibold tracking-widest uppercase mb-6 backdrop-blur-md">
+                <i data-lucide="landmark" class="w-4 h-4"></i>
+                <span>極東義大利 · 亞得里亞海文史策展</span>
+            </div>
+
+            <!-- 主標題 -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold font-serif tracking-tight text-white leading-tight mb-6 drop-shadow-2xl">
+                望海堡 <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-400 font-cinzel block mt-2 text-3xl sm:text-5xl md:text-6xl">Castello di Miramare</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl md:text-2xl text-slate-200 font-serif max-w-3xl mx-auto leading-relaxed font-light mb-10 text-shadow">
+                一艘由白伊斯特拉石雕琢而成、永不啟航的白色方舟；<br class="hidden sm:inline">
+                凝望特里爾斯特灣，見證奧匈海權鼎盛與一位海軍大公的悲劇帝國夢。
+            </p>
+
+            <!-- 關鍵指標卡片 -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10">
+                <div class="p-4 rounded-2xl bg-ocean-950/60 backdrop-blur-md border border-white/10 text-center hover:border-amber-400/40 transition">
+                    <span class="block text-2xl md:text-3xl font-bold text-amber-300 font-cinzel">1856-1860</span>
+                    <span class="text-xs text-slate-300 mt-1 block">破土與入住年代</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-ocean-950/60 backdrop-blur-md border border-white/10 text-center hover:border-amber-400/40 transition">
+                    <span class="block text-2xl md:text-3xl font-bold text-ocean-300 font-cinzel">270°</span>
+                    <span class="text-xs text-slate-300 mt-1 block">亞得里亞無敵海景</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-ocean-950/60 backdrop-blur-md border border-white/10 text-center hover:border-amber-400/40 transition">
+                    <span class="block text-2xl md:text-3xl font-bold text-amber-300 font-cinzel">SMS Novara</span>
+                    <span class="text-xs text-slate-300 mt-1 block">旗艦船艙復刻書房</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-ocean-950/60 backdrop-blur-md border border-white/10 text-center hover:border-amber-400/40 transition">
+                    <span class="block text-2xl md:text-3xl font-bold text-emerald-300 font-cinzel">22 ha</span>
+                    <span class="text-xs text-slate-300 mt-1 block">崖頂異國森林花園</span>
+                </div>
+            </div>
+
+            <!-- 探索導引按鈕 -->
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#overview" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-habsburg-navy font-bold text-sm tracking-wider uppercase transition transform hover:-translate-y-0.5 shadow-lg shadow-amber-500/25 flex items-center space-x-2">
+                    <span>展開走讀旅程</span>
+                    <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                </a>
+                <a href="#gallery" class="px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-sm tracking-wider transition backdrop-blur-md flex items-center space-x-2">
+                    <i data-lucide="image" class="w-4 h-4 text-ocean-300"></i>
+                    <span>高畫質珍藏圖集</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 滾動向下提示 -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-slate-400 flex flex-col items-center animate-bounce">
+            <span class="text-[10px] tracking-widest uppercase mb-1 font-mono">SCROLL</span>
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+        </div>
+    </section>
+
+    <!-- 主題一：核心意象與海的靈魂 -->
+    <section id="overview" class="py-24 bg-gradient-to-b from-[#051527] via-[#07213b] to-[#051527] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-ocean-400 tracking-widest uppercase font-cinzel">Essence of the Sea</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-white mt-2">以海為魂 · 峭壁上的白色夢幻</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-amber-400 to-ocean-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- 左側文案 -->
+                <div class="space-y-6">
+                    <div class="border-l-4 border-amber-400 pl-4 py-1">
+                        <p class="text-amber-200/90 font-serif italic text-lg leading-relaxed">
+                            「望海堡不是一座用來防禦敵人的要塞，而是一座為了凝視大海而生的白色方舟。」
+                        </p>
+                    </div>
+
+                    <p class="text-slate-300 leading-relaxed font-light text-base sm:text-lg">
+                        望海堡（Castello di Miramare）矗立在義大利東北邊境特里爾斯特灣（Gulf of Trieste）突出於亞得里亞海的格里尼亞諾（Grignano）岩岬上。其名源自西班牙語「<strong class="text-white font-medium">Mira el mar</strong>」（凝望大海）。
+                    </p>
+
+                    <p class="text-slate-300 leading-relaxed font-light">
+                        1850 年代，年輕有為的奧地利大公<strong class="text-amber-300 font-medium">斐迪南·馬克西米連（Ferdinand Maximilian）</strong>擔任帝國海軍總司令。在一次海戰演習遭遇風暴時，他在這座原本荒涼貧瘠的石灰岩海岬尋得避風之所，為這裡的浩瀚海景所震撼，決心在此為摯愛的妻子比利時夏洛特公主（Charlotte）打造一座前所未有的「海洋之殿」。
+                    </p>
+
+                    <!-- 三大核心地景亮點 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                        <div class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-ocean-400/50 transition">
+                            <i data-lucide="mountain" class="w-6 h-6 text-amber-300 mb-2"></i>
+                            <h4 class="font-bold text-white text-sm">白伊斯特拉石</h4>
+                            <p class="text-xs text-slate-400 mt-1">隨晨昏陽光與波光映射出銀白、象牙金至暖橘的層次。</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-ocean-400/50 transition">
+                            <i data-lucide="sail-boat" class="w-6 h-6 text-ocean-300 mb-2"></i>
+                            <h4 class="font-bold text-white text-sm">私人深水碼頭</h4>
+                            <p class="text-xs text-slate-400 mt-1">直通亞得里亞海，是大公登艦巡航與告別歐洲的起點。</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-ocean-400/50 transition">
+                            <i data-lucide="fish" class="w-6 h-6 text-emerald-300 mb-2"></i>
+                            <h4 class="font-bold text-white text-sm">海洋自然保護區</h4>
+                            <p class="text-xs text-slate-400 mt-1">1986年設立義大利首個海洋保護區，守護純淨岩礁生態。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右側主圖展示（含浮動徽章） -->
+                <div class="relative group">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/15">
+                        <img src="./unnamed.jpg" alt="Miramare Castle Garden & Sea" class="w-full h-[460px] object-cover group-hover:scale-105 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <span class="px-3 py-1 rounded-full bg-ocean-600/80 text-white text-xs font-semibold backdrop-blur-md inline-block mb-2">
+                                經典視角 · 庭園噴泉與城堡海角
+                            </span>
+                            <h3 class="text-xl font-bold font-serif text-white">新哥德與折衷主義的完美融合</h3>
+                            <p class="text-xs text-slate-300 mt-1">由奧地利名建築師 Carl Junker 精心操刀，塔樓、露臺皆以最佳視角朝向海平面開展。</p>
+                        </div>
+                    </div>
+
+                    <!-- 浮動裝飾小卡 -->
+                    <div class="absolute -top-6 -right-6 hidden sm:flex items-center space-x-3 bg-ocean-950/90 border border-amber-400/40 p-3.5 rounded-2xl shadow-xl backdrop-blur-md">
+                        <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center">
+                            <i data-lucide="compass" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-white">特里爾斯特灣</div>
+                            <div class="text-[11px] text-slate-400">45°42'09" N, 13°42'44" E</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主題二：歷史年代與命運轉折時間軸 -->
+    <section id="timeline" class="py-24 bg-[#040f1c] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="text-xs font-bold text-amber-300 tracking-widest uppercase font-cinzel">Historical Chronicle</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-white mt-2">歷史年代 · 浪潮中的帝國宿命</h2>
+                <p class="text-slate-400 text-sm mt-3">從奧匈海軍少帥的避世愛巢，到墨西哥帝國的客死異鄉與皇室夏宮</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-amber-400 to-ocean-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- 時間軸容器 -->
+            <div class="relative max-w-4xl mx-auto">
+                <!-- 中間軸線 -->
+                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-ocean-400 via-amber-400 to-ocean-800"></div>
+
+                <!-- 節點 1: 1854 -->
+                <div class="relative flex flex-col md:flex-row items-start mb-16 group">
+                    <div class="flex items-center md:w-1/2 md:justify-end md:pr-10 pl-12 md:pl-0">
+                        <div class="p-6 rounded-2xl bg-ocean-950/80 border border-white/10 hover:border-amber-400/40 transition shadow-xl w-full text-left md:text-right">
+                            <span class="inline-block px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 text-xs font-mono font-bold mb-2">1854</span>
+                            <h3 class="text-lg font-bold text-white font-serif">海軍總司令入駐特里爾斯特</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                年僅22歲的馬克西米連大公出任奧地利帝國海軍總司令，大刀闊斧現代化海軍艦隊，將特里爾斯特打造成奧匈帝國連通世界海洋的心臟。
+                            </p>
+                        </div>
+                    </div>
+                    <!-- 節點圓圈 -->
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-[#040f1c] border-4 border-ocean-400 flex items-center justify-center text-white group-hover:border-amber-400 group-hover:scale-110 transition z-10">
+                        <div class="w-2 h-2 rounded-full bg-white"></div>
+                    </div>
+                    <div class="hidden md:block md:w-1/2 md:pl-10">
+                        <span class="text-xs text-slate-500 font-cinzel">NAVAL SUPREMACY</span>
+                    </div>
+                </div>
+
+                <!-- 節點 2: 1856 - 1860 -->
+                <div class="relative flex flex-col md:flex-row items-start mb-16 group">
+                    <div class="hidden md:block md:w-1/2 md:pr-10 text-right">
+                        <span class="text-xs text-slate-500 font-cinzel">CONSTRUCTION & WEDDING</span>
+                    </div>
+                    <!-- 節點圓圈 -->
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-[#040f1c] border-4 border-amber-400 flex items-center justify-center text-white group-hover:scale-110 transition z-10">
+                        <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+                    </div>
+                    <div class="flex items-center md:w-1/2 md:pl-10 pl-12">
+                        <div class="p-6 rounded-2xl bg-ocean-950/80 border border-amber-400/30 shadow-xl w-full text-left">
+                            <span class="inline-block px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-mono font-bold mb-2">1856 - 1860</span>
+                            <h3 class="text-lg font-bold text-white font-serif">望海堡奠基與夏洛特公主入住</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                委託建築師 Carl Junker 在海崖動工。1857年大公與比利時國王利奧波德一世之女夏洛特公主完婚。1860年聖誕節前夕，夫妻倆正式遷入望海堡一樓，享受琴瑟和鳴的海洋時光。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 節點 3: 1864 (關鍵轉折) -->
+                <div class="relative flex flex-col md:flex-row items-start mb-16 group">
+                    <div class="flex items-center md:w-1/2 md:justify-end md:pr-10 pl-12 md:pl-0">
+                        <div class="p-6 rounded-2xl bg-gradient-to-br from-habsburg-crimson/40 to-ocean-950/90 border border-red-500/30 hover:border-red-400 transition shadow-2xl w-full text-left md:text-right">
+                            <span class="inline-block px-3 py-1 rounded-full bg-red-500/20 text-red-300 text-xs font-mono font-bold mb-2">1864.04.10</span>
+                            <h3 class="text-lg font-bold text-amber-200 font-serif">接下墨西哥皇冠 · 悲劇起航</h3>
+                            <p class="text-slate-200 text-sm mt-2 leading-relaxed">
+                                在拿破崙三世策動下，大公於望海堡大廳正式接見墨西哥代表團並接受帝位。4月14日，大公夫婦自城堡私人碼頭登上護衛艦「諾瓦拉號」，告別歐洲，遠征美洲。
+                            </p>
+                        </div>
+                    </div>
+                    <!-- 節點圓圈 -->
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-red-900 border-4 border-amber-300 flex items-center justify-center text-white group-hover:scale-110 transition z-10">
+                        <i data-lucide="crown" class="w-3.5 h-3.5 text-amber-300"></i>
+                    </div>
+                    <div class="hidden md:block md:w-1/2 md:pl-10">
+                        <span class="text-xs text-red-400 font-cinzel">FATEFUL DEPARTURE</span>
+                    </div>
+                </div>
+
+                <!-- 節點 4: 1867 -->
+                <div class="relative flex flex-col md:flex-row items-start mb-16 group">
+                    <div class="hidden md:block md:w-1/2 md:pr-10 text-right">
+                        <span class="text-xs text-slate-500 font-cinzel">TRAGIC END</span>
+                    </div>
+                    <!-- 節點圓圈 -->
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-[#040f1c] border-4 border-slate-400 flex items-center justify-center text-white group-hover:scale-110 transition z-10">
+                        <div class="w-2 h-2 rounded-full bg-slate-400"></div>
+                    </div>
+                    <div class="flex items-center md:w-1/2 md:pl-10 pl-12">
+                        <div class="p-6 rounded-2xl bg-ocean-950/80 border border-white/10 shadow-xl w-full text-left">
+                            <span class="inline-block px-3 py-1 rounded-full bg-slate-500/20 text-slate-300 text-xs font-mono font-bold mb-2">1867.06.19</span>
+                            <h3 class="text-lg font-bold text-white font-serif">奎雷塔羅之槍 · 魂斷異鄉</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                法軍撤退後墨西哥共和軍反攻，馬克西米連一世於奎雷塔羅被俘槍決，享年34歲。精神崩潰的夏洛特皇后曾短暫在望海堡小城堡（Castelletto）幽閉療養，終生未能走出哀痛。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 節點 5: 1870 - 現今 -->
+                <div class="relative flex flex-col md:flex-row items-start group">
+                    <div class="flex items-center md:w-1/2 md:justify-end md:pr-10 pl-12 md:pl-0">
+                        <div class="p-6 rounded-2xl bg-ocean-950/80 border border-ocean-400/30 shadow-xl w-full text-left md:text-right">
+                            <span class="inline-block px-3 py-1 rounded-full bg-ocean-500/20 text-ocean-300 text-xs font-mono font-bold mb-2">1870 ~ 至今</span>
+                            <h3 class="text-lg font-bold text-white font-serif">茜茜公主的夏宮 & 國家博物館</h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                                望海堡完工後成為奧地利皇后茜茜公主（Sisi）最愛的沿海療癒之所。1955年正式成為義大利國立博物館與海洋自然保護區，向全世界旅人開放。
+                            </p>
+                        </div>
+                    </div>
+                    <!-- 節點圓圈 -->
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-ocean-900 border-4 border-emerald-400 flex items-center justify-center text-white group-hover:scale-110 transition z-10">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-300"></i>
+                    </div>
+                    <div class="hidden md:block md:w-1/2 md:pl-10">
+                        <span class="text-xs text-emerald-400 font-cinzel">LIVING HERITAGE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主題三：航海語彙與空間深度解析（船艙、王座廳、歷史名畫） -->
+    <section id="interiors" class="py-24 bg-gradient-to-b from-[#051527] via-[#082846] to-[#051527] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-ocean-300 tracking-widest uppercase font-cinzel">Spatial Narrative</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-white mt-2">空間策展 · 船艙私密與皇權王座</h2>
+                <p class="text-slate-400 text-sm mt-3">一樓是航行於風浪中的海軍司令船艙，二樓是通往帝國榮耀與幻滅的王座</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-amber-400 to-ocean-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- 兩大空間對比卡片 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- 空間 A：一樓 Novara 船長室 -->
+                <div class="bg-ocean-950/90 rounded-3xl overflow-hidden border border-white/10 hover:border-ocean-400/40 transition shadow-2xl flex flex-col">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Castello_Miramare_interior_2009_09.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original" alt="Novara Cabin Bedroom" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-ocean-800/80 text-ocean-200 text-xs font-semibold backdrop-blur-md">
+                            1F · 大公私人領域
+                        </div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold font-serif text-white flex items-center space-x-2">
+                                <i data-lucide="anchor" class="w-5 h-5 text-amber-300"></i>
+                                <span>「諾瓦拉號」旗艦復刻船艙</span>
+                            </h3>
+                            <p class="text-slate-300 text-sm mt-4 leading-relaxed font-light">
+                                大公曾率「諾瓦拉號（SMS Novara）」完成奧地利史上首次環球航行。他將私人臥室與書房的木天花板、牆板甚至傢俱，完全依據軍艦船長室的緊湊與實用結構打造。窗戶經過高度算計，坐於桌前向外望去，<strong class="text-amber-200 font-medium">陸地隱匿不見，唯有翻湧浪濤映入眼簾</strong>，宛如置身於航行大海的旗艦之中。
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+                            <span>特色：航海羅盤儀器、柚木雕刻、低矮天頂</span>
+                            <span class="text-amber-300 font-medium">象徵大公的心靈避風港</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 空間 B：二樓 王座大廳 (Throne Room) -->
+                <div class="bg-ocean-950/90 rounded-3xl overflow-hidden border border-white/10 hover:border-amber-400/40 transition shadow-2xl flex flex-col">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="./unnamed (1).jpg" alt="Miramare Throne Room" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-red-900/80 text-red-200 text-xs font-semibold backdrop-blur-md">
+                            2F · 帝國外交與皇權大廳
+                        </div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold font-serif text-white flex items-center space-x-2">
+                                <i data-lucide="crown" class="w-5 h-5 text-amber-300"></i>
+                                <span>王座大廳（Sala del Trono）</span>
+                            </h3>
+                            <p class="text-slate-300 text-sm mt-4 leading-relaxed font-light">
+                                二樓呈現鮮明對比的帝王奢華。王座大廳鋪設了象徵哈布斯堡威儀的猩紅色絲綢提花壁布、金箔雕花吊燈與歷代奧地利統治者畫像。這裡原本是大公作為墨西哥皇帝接見各國使節的最高殿堂，然而大公在城堡完工前便命喪美洲，<strong class="text-red-300 font-medium">這座巍峨王座他一生從未真正坐過</strong>。
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+                            <span>特色：帝國紅提花緞、水晶吊燈、家族巨幅畫像</span>
+                            <span class="text-red-300 font-medium">象徵權力野心與歷史嘆息</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 歷史巨作：接受墨西哥皇冠油畫 -->
+            <div class="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                <div class="lg:col-span-1 rounded-2xl overflow-hidden shadow-xl border border-white/10">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Dell%27Acqua_Ernennung_Maximilians_zum_Kaiser_Mexikos.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original" alt="Dell'Acqua Painting of Maximilian" class="w-full h-56 object-cover">
+                </div>
+                <div class="lg:col-span-2 space-y-3">
+                    <span class="px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-mono font-bold inline-block">
+                        宮廷畫家 Cesare Dell'Acqua 傳世名作
+                    </span>
+                    <h4 class="text-xl font-bold text-white font-serif">《馬克西米連於望海堡接見墨西哥代表團》</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed font-light">
+                        畫作生動記錄了 1864 年 4 月 10 日在城堡內發生的歷史定格時刻：墨西哥保皇派代表跪地向大公獻上皇冠，夏洛特公主在一旁神情憂慮。透過畫中敞開的高聳窗欞，碧藍的特里爾斯特灣清晰可見，暗示著大公即將乘艦破浪前往新大陸的悲壯宿命。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主題四：高畫質策展圖集 (Gallery & Lightbox) -->
+    <section id="gallery" class="py-24 bg-[#030c17] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-xs font-bold text-amber-300 tracking-widest uppercase font-cinzel">Curated Visual Collection</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-serif text-white mt-2">策展圖集 · 望海堡的萬種風華</h2>
+                </div>
+                <p class="text-slate-400 text-sm mt-3 md:mt-0 max-w-md">點擊圖片即可開啟高解析度放大檢視與策展解說</p>
+            </div>
+
+            <!-- 圖庫網格 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+                <!-- 圖 1: 港灣倒影 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-ocean-950 border border-white/10 cursor-pointer aspect-[4/3]" onclick="openModal('./unnamed (2).jpg', '望海堡私人港灣（Porticciolo）倒影', '大公出航與諾瓦拉號停泊的私家碼頭，防波堤延伸入海，倒映著巍峨白塔與碧藍海水。')">
+                    <img src="./unnamed (2).jpg" alt="Miramare Castle Reflection" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+                        <span class="text-amber-300 text-xs font-bold tracking-wider uppercase font-cinzel">Exterior & Harbour</span>
+                        <h4 class="text-white font-serif font-bold text-lg mt-1">港灣石階與碧波倒影</h4>
+                    </div>
+                </div>
+
+                <!-- 圖 2: 正面花園噴泉 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-ocean-950 border border-white/10 cursor-pointer aspect-[4/3]" onclick="openModal('./unnamed.jpg', '城堡正立面與噴泉花園', '白伊斯特拉石建築在陽光下熠熠生輝，前景為修剪整齊的花園噴泉，遠景為浩瀚無垠的亞得里亞海。')">
+                    <img src="./unnamed.jpg" alt="Miramare Facade and Fountain" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+                        <span class="text-amber-300 text-xs font-bold tracking-wider uppercase font-cinzel">Main Facade</span>
+                        <h4 class="text-white font-serif font-bold text-lg mt-1">正立面與海景綠意</h4>
+                    </div>
+                </div>
+
+                <!-- 圖 3: 二樓王座大廳 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-ocean-950 border border-white/10 cursor-pointer aspect-[4/3]" onclick="openModal('./unnamed (1).jpg', '王座大廳（Sala del Trono）', '滿布帝王紅絲綢與金箔雕飾的王座大廳，見證了哈布斯堡王朝在義大利東北邊陲的極致排場。')">
+                    <img src="./unnamed (1).jpg" alt="Throne Room" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+                        <span class="text-amber-300 text-xs font-bold tracking-wider uppercase font-cinzel">Imperial Grandeur</span>
+                        <h4 class="text-white font-serif font-bold text-lg mt-1">猩紅絨緞王座大廳</h4>
+                    </div>
+                </div>
+
+                <!-- 圖 4: 小城堡 Castelletto -->
+                <div class="group relative rounded-2xl overflow-hidden bg-ocean-950 border border-white/10 cursor-pointer aspect-[4/3]" onclick="openModal('https://upload.wikimedia.org/wikipedia/commons/8/8f/Castelletto_di_Miramare.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original', '公園中的小城堡（Castelletto）', '在大城堡興建期間大公夫婦暫住的小型宮殿，也是夏洛特公主悲痛幽居之處。')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Castelletto_di_Miramare.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original" alt="Castelletto" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+                        <span class="text-amber-300 text-xs font-bold tracking-wider uppercase font-cinzel">Garden Manor</span>
+                        <h4 class="text-white font-serif font-bold text-lg mt-1">隱於林間的小城堡</h4>
+                    </div>
+                </div>
+
+                <!-- 圖 5: 諾瓦拉臥室內部 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-ocean-950 border border-white/10 cursor-pointer aspect-[4/3]" onclick="openModal('https://upload.wikimedia.org/wikipedia/commons/f/f8/Castello_Miramare_interior_2009_21.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original', '大公臥室與海景書桌', '低矮精巧的船艙格局，向外望去唯有浪花翻滾，是大公沉浸於海洋夢想的私人空間。')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Castello_Miramare_interior_2009_21.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original" alt="Maximilian Bedroom" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+                        <span class="text-amber-300 text-xs font-bold tracking-wider uppercase font-cinzel">Cabin Quarters</span>
+                        <h4 class="text-white font-serif font-bold text-lg mt-1">大公臥艙與舷窗海景</h4>
+                    </div>
+                </div>
+
+                <!-- 圖 6: 濱海懸崖與大砲露臺 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-ocean-950 border border-white/10 cursor-pointer aspect-[4/3]" onclick="openModal('https://upload.wikimedia.org/wikipedia/commons/8/86/Castello_di_Miramare_%28Parco%29_Piazzola_con_i_cannoni.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original', '海防砲臺與濱海步道', '俯瞰特里爾斯特灣的防衛砲臺露臺，現為眺望亞得里亞海夕照的絕佳機位。')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Castello_di_Miramare_%28Parco%29_Piazzola_con_i_cannoni.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original" alt="Miramare Battery Terrace" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+                        <span class="text-amber-300 text-xs font-bold tracking-wider uppercase font-cinzel">Coastal Bastion</span>
+                        <h4 class="text-white font-serif font-bold text-lg mt-1">海防砲臺與懸崖遠眺</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主題五：走讀與攝影攻略指南 (Walking Guide & Tips) -->
+    <section id="guide" class="py-24 bg-gradient-to-b from-[#051527] via-[#072440] to-[#040f1c] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-amber-300 tracking-widest uppercase font-cinzel">Traveler & Photo Guide</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-white mt-2">走讀攻略 · 捕捉亞得里亞海的光影</h2>
+                <p class="text-slate-400 text-sm mt-3">深度漫遊望海堡的 6 大必訪機位與實用參訪資訊</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-amber-400 to-ocean-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- 6 大亮點卡片 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <div class="p-6 rounded-2xl bg-ocean-950/80 border border-white/10 hover:border-amber-400/40 transition">
+                    <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold mb-4 font-cinzel">01</div>
+                    <h3 class="font-bold text-lg text-white font-serif">格里尼亞諾防波堤（Porticciolo）</h3>
+                    <p class="text-slate-300 text-sm mt-2 leading-relaxed font-light">
+                        走到底端防波堤回望，可以將白色城堡倒影與整片蔚藍海灣同時收入鏡頭，黃昏時分水面金光璀璨。
+                    </p>
+                </div>
+                <div class="p-6 rounded-2xl bg-ocean-950/80 border border-white/10 hover:border-amber-400/40 transition">
+                    <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold mb-4 font-cinzel">02</div>
+                    <h3 class="font-bold text-lg text-white font-serif">埃及斯芬克斯像（Sphinx）</h3>
+                    <p class="text-slate-300 text-sm mt-2 leading-relaxed font-light">
+                        碼頭石階上的粉紅花崗岩獅身人面像，據傳為西元前古埃及文物，默默守護著通往大海的門戶。
+                    </p>
+                </div>
+                <div class="p-6 rounded-2xl bg-ocean-950/80 border border-white/10 hover:border-amber-400/40 transition">
+                    <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold mb-4 font-cinzel">03</div>
+                    <h3 class="font-bold text-lg text-white font-serif">大公海景書房窗欞</h3>
+                    <p class="text-slate-300 text-sm mt-2 leading-relaxed font-light">
+                        入內參觀時務必站在書桌旁向外望，體會大公當年「只見汪洋、無陸無牽」的乘風破浪沉思感。
+                    </p>
+                </div>
+                <div class="p-6 rounded-2xl bg-ocean-950/80 border border-white/10 hover:border-amber-400/40 transition">
+                    <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold mb-4 font-cinzel">04</div>
+                    <h3 class="font-bold text-lg text-white font-serif">懸崖花園黎巴嫩雪松道</h3>
+                    <p class="text-slate-300 text-sm mt-2 leading-relaxed font-light">
+                        大公自各國帶回的異國植物如今已成參天巨木，從林蔭間隙窺見藍色海岸線，光影迷人。
+                    </p>
+                </div>
+                <div class="p-6 rounded-2xl bg-ocean-950/80 border border-white/10 hover:border-amber-400/40 transition">
+                    <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold mb-4 font-cinzel">05</div>
+                    <h3 class="font-bold text-lg text-white font-serif">天鵝湖（Laghetto dei Cigni）</h3>
+                    <p class="text-slate-300 text-sm mt-2 leading-relaxed font-light">
+                        位於城堡後方園林深處的幽靜人工湖，周圍環繞著竹林與水生植物，散發19世紀浪漫主義氛圍。
+                    </p>
+                </div>
+                <div class="p-6 rounded-2xl bg-ocean-950/80 border border-white/10 hover:border-amber-400/40 transition">
+                    <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold mb-4 font-cinzel">06</div>
+                    <h3 class="font-bold text-lg text-white font-serif">Barcola 濱海散步道遠眺</h3>
+                    <p class="text-slate-300 text-sm mt-2 leading-relaxed font-light">
+                        從特里爾斯特市區沿著巴爾科拉海濱步道漫步，能在數公里外遠遠望見白城堡懸浮於蔚藍海平面上。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 實用走讀資訊卡 -->
+            <div class="p-8 rounded-3xl bg-ocean-950/90 border border-amber-400/30 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-2 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start space-x-2 text-amber-300 font-bold text-sm">
+                        <i data-lucide="info" class="w-4 h-4"></i>
+                        <span>參訪小貼士 (Visitor Tips)</span>
+                    </div>
+                    <h4 class="text-xl font-serif text-white font-bold">交通與最佳到訪時段</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed font-light">
+                        🚇 自特里爾斯特中央火車站搭乘 <strong>6 號公車</strong> 或區間火車至 Miramare 站即達。<br>
+                        🌅 <strong>推薦時段</strong>：清晨開園時避開人潮，或下午 16:00 後順光拍攝城堡外觀與夕陽落海。
+                    </p>
+                </div>
+                <div class="flex-shrink-0">
+                    <a href="https://it.wikipedia.org/wiki/Castello_di_Miramare" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-ocean-700 hover:bg-ocean-600 text-white font-semibold text-sm transition flex items-center space-x-2 shadow-lg">
+                        <span>維基文獻深度延伸</span>
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="py-12 bg-[#020810] border-t border-white/10 text-center text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <div class="flex items-center justify-center space-x-2 text-amber-300 font-cinzel font-bold text-sm">
+                <i data-lucide="compass" class="w-4 h-4"></i>
+                <span>CASTELLO DI MIRAMARE · DIGITAL CURATION</span>
+            </div>
+            <p class="text-slate-400">數位策展深旅 · 極東義大利歷史走讀系列</p>
+            <p class="text-slate-400 font-mono">© 2026 Antigravity Curation Hub. Photographs & Historical Assets from Wikimedia Commons & Archive.</p>
+        </div>
+    </footer>
+
+    <!-- 燈箱彈窗 (Lightbox Modal) -->
+    <div id="imageModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden flex items-center justify-center p-4 transition-opacity duration-300 opacity-0" onclick="closeModal()">
+        <div class="relative max-w-4xl w-full bg-ocean-950 border border-white/20 rounded-3xl overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 text-white hover:bg-black/90 flex items-center justify-center transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="max-h-[70vh] overflow-hidden bg-black flex items-center justify-center">
+                <img id="modalImg" src="" alt="Modal View" class="max-h-[70vh] w-auto object-contain">
+            </div>
+            <div class="p-6">
+                <h3 id="modalTitle" class="text-xl font-bold font-serif text-white"></h3>
+                <p id="modalDesc" class="text-slate-300 text-sm mt-2 leading-relaxed font-light"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 腳本 -->
+    <script>
+        // 初始化 Lucide 圖標
+        lucide.createIcons();
+
+        // 燈箱控制
+        function openModal(imgSrc, title, desc) {
+            const modal = document.getElementById('imageModal');
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // 鍵盤 ESC 關閉燈箱
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // 簡易 Web Audio API 模擬舒緩亞得里亞海海浪聲
+        let audioCtx = null;
+        let isPlaying = false;
+        let noiseNode = null;
+        let gainNode = null;
+        let filterNode = null;
+
+        function toggleSeaSound() {
+            const soundIcon = document.getElementById('soundIcon');
+            const soundText = document.getElementById('soundText');
+
+            if (!isPlaying) {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                // 建立粉紅噪音海浪合成
+                const bufferSize = audioCtx.sampleRate * 2;
+                const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+                for (let i = 0; i < bufferSize; i++) {
+                    const white = Math.random() * 2 - 1;
+                    b0 = 0.99886 * b0 + white * 0.0555179;
+                    b1 = 0.99332 * b1 + white * 0.0750759;
+                    b2 = 0.96900 * b2 + white * 0.1538520;
+                    b3 = 0.86650 * b3 + white * 0.3104856;
+                    b4 = 0.55000 * b4 + white * 0.5329522;
+                    b5 = -0.7616 * b5 - white * 0.0168980;
+                    output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+                    output[i] *= 0.11;
+                    b6 = white * 0.115926;
+                }
+
+                const whiteNoise = audioCtx.createBufferSource();
+                whiteNoise.buffer = noiseBuffer;
+                whiteNoise.loop = true;
+
+                filterNode = audioCtx.createBiquadFilter();
+                filterNode.type = 'lowpass';
+                filterNode.frequency.setValueAtTime(350, audioCtx.currentTime);
+
+                // 潮汐週期調節
+                const lfo = audioCtx.createOscillator();
+                lfo.frequency.setValueAtTime(0.12, audioCtx.currentTime); // 每 8 秒一次浪潮起伏
+                const lfoGain = audioCtx.createGain();
+                lfoGain.gain.setValueAtTime(220, audioCtx.currentTime);
+                lfo.connect(lfoGain);
+                lfoGain.connect(filterNode.frequency);
+                lfo.start();
+
+                gainNode = audioCtx.createGain();
+                gainNode.gain.setValueAtTime(0.18, audioCtx.currentTime);
+
+                whiteNoise.connect(filterNode);
+                filterNode.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                whiteNoise.start();
+                noiseNode = whiteNoise;
+
+                isPlaying = true;
+                soundIcon.setAttribute('data-lucide', 'volume-x');
+                soundText.innerText = '靜音海浪';
+            } else {
+                if (noiseNode) {
+                    noiseNode.stop();
+                    noiseNode.disconnect();
+                }
+                isPlaying = false;
+                soundIcon.setAttribute('data-lucide', 'volume-2');
+                soundText.innerText = '海浪環境音';
+            }
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
