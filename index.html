@@ -472,7 +472,7 @@
             </div>
 
             <!-- 愛情與悲歌故事引言卡 -->
-            <div class="p-8 rounded-3xl bg-white/5 border border-amber-400/30 backdrop-blur-md flex flex-col md:flex-row items-center gap-6">
+            <div class="p-8 rounded-3xl bg-white/5 border border-amber-400/30 backdrop-blur-md flex flex-col md:flex-row items-center gap-6 mb-16">
                 <div class="w-14 h-14 rounded-2xl bg-amber-400/20 text-amber-300 flex items-center justify-center flex-shrink-0">
                     <i data-lucide="quote" class="w-7 h-7"></i>
                 </div>
@@ -481,6 +481,111 @@
                     <p class="text-slate-300 text-sm leading-relaxed font-light">
                         望海堡是一座因愛而生的宮殿。在啟程前往墨西哥前的四年間，大公親自為夏洛特規劃朝向海面的起居室，夏洛特則在城堡中彈琴作畫、侍弄大公從全球航海帶回的花草。這段面朝大海、浪濤相伴的時光，成為這對年輕皇室夫妻一生中唯一純粹而幸福的避風港。
                     </p>
+                </div>
+            </div>
+
+            <!-- 馬克西米連大公生平五部曲（深度歷史策展） -->
+            <div class="bg-ocean-950/80 rounded-3xl p-8 sm:p-10 border border-white/10 shadow-2xl">
+                <div class="flex items-center space-x-3 mb-8">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-400 to-yellow-200 text-slate-950 flex items-center justify-center font-bold">
+                        <i data-lucide="book-open" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-amber-300 font-cinzel tracking-widest uppercase">Biographical Odyssey</span>
+                        <h3 class="text-2xl font-bold font-serif text-white">大公生平史詩 · 浪漫少帥與悲劇帝王</h3>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+                    <!-- 篇章 1: 皇室童年 -->
+                    <div class="p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-amber-400/40 transition">
+                        <div>
+                            <span class="text-xs font-mono font-bold text-amber-300">1832 – 1850</span>
+                            <h4 class="text-base font-bold font-serif text-white mt-1">美泉宮的文藝皇子</h4>
+                            <p class="text-slate-300 text-xs mt-2 leading-relaxed font-light">
+                                生於維也納美泉宮，為奧匈皇帝法蘭茲·約瑟夫一世之胞弟。天資聰穎、酷愛植物學、繪畫與詩歌，是家族中思想最開明的浪漫主義貴族。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-slate-400">
+                            出身：哈布斯堡-洛林皇朝
+                        </div>
+                    </div>
+
+                    <!-- 篇章 2: 海軍司令 -->
+                    <div class="p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-ocean-400/40 transition">
+                        <div>
+                            <span class="text-xs font-mono font-bold text-ocean-300">1850 – 1859</span>
+                            <h4 class="text-base font-bold font-serif text-white mt-1">海軍總司令與環球夢</h4>
+                            <p class="text-slate-300 text-xs mt-2 leading-relaxed font-light">
+                                22歲掌舵奧地利海軍，大舉現代化艦隊與造船港；1857年推動「諾瓦拉號」展開奧地利歷史首次環球科學考察，深獲海軍將士愛戴。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-ocean-300">
+                            功績：奧匈海權黃金奠基者
+                        </div>
+                    </div>
+
+                    <!-- 篇章 3: 望海歲月 -->
+                    <div class="p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-amber-400/40 transition">
+                        <div>
+                            <span class="text-xs font-mono font-bold text-amber-300">1856 – 1864</span>
+                            <h4 class="text-base font-bold font-serif text-white mt-1">避世築夢 · 望海堡</h4>
+                            <p class="text-slate-300 text-xs mt-2 leading-relaxed font-light">
+                                辭去倫巴第總督後隱退特里爾斯特，為夏洛特建造望海堡。將海崖改造成綠洲，並將書房打造成旗艦船艙，享受琴瑟和鳴的海風歲月。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-amber-300">
+                            心境：一生最寧靜純粹時光
+                        </div>
+                    </div>
+
+                    <!-- 篇章 4: 墨西哥稱帝 -->
+                    <div class="p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-red-400/40 transition">
+                        <div>
+                            <span class="text-xs font-mono font-bold text-red-300">1864 – 1866</span>
+                            <h4 class="text-base font-bold font-serif text-white mt-1">美洲帝位與開明改革</h4>
+                            <p class="text-slate-300 text-xs mt-2 leading-relaxed font-light">
+                                懷抱開明理想接受墨西哥皇冠。登基後推動保障原住民、廢除童工與限制工時等進步法案，卻腹背受敵，陷於大國地緣棋局與內戰。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-red-300">
+                            頭銜：墨西哥皇帝馬克西米連一世
+                        </div>
+                    </div>
+
+                    <!-- 篇章 5: 悲壯殉道 -->
+                    <div class="p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-slate-400/40 transition">
+                        <div>
+                            <span class="text-xs font-mono font-bold text-slate-300">1867.06.19</span>
+                            <h4 class="text-base font-bold font-serif text-white mt-1">奎雷塔羅之槍與歸航</h4>
+                            <p class="text-slate-300 text-xs mt-2 leading-relaxed font-light">
+                                法軍撤退後堅拒拋棄部下，被俘後於鐘聲之丘從容就義（年僅34歲）。遺體最終由「諾瓦拉號」接回維也納皇家墓穴，長眠故土。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-slate-400">
+                            終章：諾瓦拉號迎靈歸葬維也納
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 馬奈名畫《馬克西米連皇帝的處決》插卡 -->
+                <div class="mt-8 pt-8 border-t border-white/10 grid grid-cols-1 lg:grid-cols-4 gap-6 items-center">
+                    <div class="lg:col-span-1 rounded-2xl overflow-hidden bg-black/50 border border-white/10 cursor-pointer group" onclick="openModal('https://upload.wikimedia.org/wikipedia/commons/4/40/Edouard_Manet_022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original', '馬奈名作《馬克西米連皇帝的處決》', '法國印象派巨匠愛德華·馬奈（Édouard Manet）於1868年創作的傳世歷史巨作，深刻抨擊了拿破崙三世政權的背信棄義。')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Edouard_Manet_022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original" alt="Manet Execution of Maximilian" class="w-full h-40 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="p-2 text-center text-[11px] text-slate-400 bg-black/60">🎨 愛德華·馬奈 1868 歷史名作（點擊放大）</div>
+                    </div>
+                    <div class="lg:col-span-3 space-y-2">
+                        <div class="inline-flex items-center space-x-2 text-amber-300 text-xs font-bold font-mono">
+                            <i data-lucide="feather" class="w-4 h-4"></i>
+                            <span>大公的最後遺言 (Last Words at Querétaro)</span>
+                        </div>
+                        <blockquote class="text-sm font-serif italic text-slate-200 border-l-2 border-amber-400 pl-4 py-1 leading-relaxed">
+                            「我寬恕所有人，並祈求所有人寬恕我。願我即將流下的鮮血，能夠造福這個國家。墨西哥萬歲！獨立萬歲！」
+                        </blockquote>
+                        <p class="text-xs text-slate-400 leading-relaxed font-light">
+                            大公臨刑前神態自若，將身上的金幣贈與行刑士兵，溫和請求他們「瞄準胸膛，保留面容給他在維也納的母親辨認」。這場悲劇震動了全歐洲文藝界，馬奈等大師皆創作巨幅畫作哀悼這位命途多舛的望海堡主人。
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
